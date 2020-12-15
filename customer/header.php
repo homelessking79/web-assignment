@@ -56,9 +56,9 @@
 					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="./products.php">Products </a>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="./contact.php">Contact us </a>
-					</li>
+					</li> -->
 
 					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="./login.php">Log in </a>

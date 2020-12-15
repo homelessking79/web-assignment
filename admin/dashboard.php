@@ -6,7 +6,7 @@ include_once 'header.php';
 
 	if(isset($_SESSION['isLogin'])){
 		if($_SESSION['isLogin']){
-			if($_SESSION['role'] != 'admin'){
+			if($_SESSION['role'] != 'A'){
 				header('location: ../index.php');
 				exit();
 			}

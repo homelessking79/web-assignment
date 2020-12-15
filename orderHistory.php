@@ -6,9 +6,9 @@
 	
 	if(isset($_SESSION['isLogin'])){
 		if($_SESSION['isLogin']){
-			if($_SESSION['role'] == 'customer'){
+			if($_SESSION['role'] == 'C'){
 				include_once 'customer/header-login.php';
-			}else if($_SESSION['role'] == 'admin'){
+			}else if($_SESSION['role'] == 'A'){
 				header('location: admin/products.php');
 				exit();
 			}
@@ -44,18 +44,18 @@
 						$stmt->bind_param("s",$_SESSION['ID']);
 						$stmt->execute();
 						$stmt->store_result();
-						$stmt->bind_result($orderID,$userID,$price,$order_date,$items);
+						$stmt->bind_result($orderID,$userID,$items,$order_date,$price);
 
 						$arrID = array();
 						if($stmt->num_rows >0) {
 							while($row = $stmt->fetch()){
-								$seconds = $order_date / 1000;
+								// $seconds = $order_date / 1000;
 								?>
 								<tr class='text-center'>
 									<td><?php echo $orderID?></td>
 									<td><?php echo $price?></td>
 									
-									<td><?php echo date("D M , Y  ---  h : i", (int)$seconds);?></td>
+									<td><?php echo $order_date?></td>
 						
 								</tr>
 						<?php

@@ -58,12 +58,12 @@
 				  <li class="nav-item">
 					<a class="nav-link js-scroll-trigger" href="./products.php">Products </a>
 				  </li>
-				  <li class="nav-item">
+				  <!-- <li class="nav-item">
 					<a class="nav-link js-scroll-trigger" href="./contact.php">Contact us </a>
-				 </li>
-				 <li class="nav-item">
-					<i class="nav-link js-scroll-trigger fa fa-shopping-cart fa-fw"  id="cartButton" data-toggle="modal" data-target="#myModal" style="color:white;font-size:22px;"></i>
-				 </li>
+				 </li> -->
+					<!-- <li class="nav-item">
+						<i class="nav-link js-scroll-trigger fa fa-shopping-cart fa-fw"  id="cartButton" data-toggle="modal" data-target="#myModal" style="color:white;font-size:22px;"></i>
+					</li> -->
 
             </ul>
 			
@@ -81,30 +81,30 @@
 									}
 									?>';
 					 
-						$.ajax({
-						  type:'POST',
-						  url: "./scripts/foreground/getProfileAddress.php",
-						  dataType: "json",
-						  data: { 'email': email},
-						    success:function(data){
+						// $.ajax({
+						//   type:'POST',
+						//   url: "./scripts/foreground/getProfileAddress.php",
+						//   dataType: "json",
+						//   data: { 'email': email},
+						//     success:function(data){
 								
-								//console.log(data+" hey");
+						// 		//console.log(data+" hey");
 								
-								address = data['data']['avatar'];
-								url = "./uploadedImages/avatar/"+address;
-								if(address != 'none'){
-									document.getElementById("userImg").src= url;
-								}else{
-									url = "./images/user.png";
-									document.getElementById("userImg").src= url;
-								}
+						// 		address = data['data']['avatar'];
+						// 		url = "./uploadedImages/avatar/"+address;
+						// 		if(address != 'none'){
+						// 			document.getElementById("userImg").src= url;
+						// 		}else{
+						// 			url = "./images/user.png";
+						// 			document.getElementById("userImg").src= url;
+						// 		}
 								
 								
 								
-							},
-							error: function(ts) { console.log(ts.responseText);
-							}
-						});
+						// 	},
+						// 	error: function(ts) { console.log(ts.responseText);
+						// 	}
+						// });
 						
 					 
 					 
@@ -117,7 +117,7 @@
 						}
 						
 					 ?>
-					 <img class="rounded-circle" id="userImg" src="" width="30" height="30">
+					 <!-- <img class="rounded-circle" id="userImg" src="" width="30" height="30"> -->
 						
 					</span>
                     <div class="dropdown-menu" aria-labelledby="navDropDownLink">
@@ -127,7 +127,11 @@
 						<div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="./scripts/foreground/log-out.php">Log out</a>
                     </div>
-                </li>
+				</li>
+				
+				<li class="nav-item">
+					<i class="nav-link js-scroll-trigger fa fa-shopping-cart fa-fw"  id="cartButton" data-toggle="modal" data-target="#myModal" style="color:white;font-size:22px;"></i>
+				 </li>
             </ul>
 
         </div>

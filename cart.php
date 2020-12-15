@@ -215,14 +215,17 @@ if (isset($_SESSION['isLogin'])) {
 									sum = 0;
 									price = 0;
 									for (i = 0; i < arrIDs.length; i++) {
+										console.log("check1:" + arrIDs[i]);
 
 
 										for (j = 0; j < theServerResponse.length; j++) {
-											if (theServerResponse[j]['ID'] == arrIDs[i]) {
+											console.log("check2:" + theServerResponse[j]['product_id']);
+											if (theServerResponse[j]['product_id'] == arrIDs[i]) {
 												price = theServerResponse[j]['price'];
+												console.log("Price2"+price);
 											}
 										}
-
+										console.log("Price:" + price);
 										susID = '#inputer' + arrIDs[i];
 										totID = '#totalSection' + arrIDs[i];
 										susVal = $(susID).val();
@@ -234,11 +237,12 @@ if (isset($_SESSION['isLogin'])) {
 
 										mult = parseInt(susVal) * parseInt(price);
 										sum += parseInt(mult);
-
-
+										console.log("mult:" + mult);
+										console.log("susval:" + susVal);
+									
 									}
-
-									//console.log(sum);
+									//
+									console.log("Gia: " + sum);
 									$.ajax({
 										type: 'POST',
 										url: 'scripts/foreground/order.php',

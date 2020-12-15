@@ -144,14 +144,14 @@
 			return $stmt->num_rows > 0; 
 		}
 		
-		private function validDateUser($email,$password){
-			$password = md5($pass);
-			$stmt = $this->con->prepare("SELECT ID FROM users WHERE email=? AND password=? AND role=admin");
-			$stmt->bind_param("ss", $email,$password);
-			$stmt->execute(); 
-			$stmt->store_result(); 
-			return $stmt->num_rows > 0; 
-		}
+		// private function validDateUser($email,$password){
+		// 	$password = md5($pass);
+		// 	$stmt = $this->con->prepare("SELECT ID FROM users WHERE email=? AND password=? AND role=admin");
+		// 	$stmt->bind_param("ss", $email,$password);
+		// 	$stmt->execute(); 
+		// 	$stmt->store_result(); 
+		// 	return $stmt->num_rows > 0; 
+		// }
 		
 		public function getAllUsers(){
 			$responseObj = new Response();
@@ -234,7 +234,7 @@
 			if ($status === false) {
 				$responseObj->setError(true);	
 				$responseObj->setMessage('Failed to upload profile picture');	
-				$responseObj->setContent($res);
+				$responseObj->setContent('false');
 			}else{
 				$responseObj->setError(false);	
 				$responseObj->setMessage('Uploaded successfully');	
@@ -302,16 +302,16 @@
 		public function getAllOrders(){
 			$responseObj = new Response();
 			$res = array();
-			$result = $this->con->query("select o.ID , o.user_id , o.price , o.order_date , o.items , u.name , u.address from orders o join users u where o.user_id = u.ID");
+			$result = $this->con->query("select o.order_id , o.user_id , o.price , o.order_date , o.items , u.user_fname , u.user_address from orders o join users u where o.user_id = u.user_id");
 			while($row = $result->fetch_assoc()){
 				$temp = array();
-				$temp['ID'] =  $row['ID'];
+				$temp['ID'] =  $row['order_id'];
 				$temp['user_id'] =  $row['user_id'];
 				$temp['price'] =  $row['price'];
 				$temp['order_date'] =  $row['order_date'];
 				$temp['items'] =  $row['items'];
-				$temp['user_name'] =  $row['name'];
-				$temp['user_address'] =  $row['address'];
+				$temp['user_name'] =  $row['user_fname'];
+				$temp['user_address'] =  $row['user_address'];
 				array_push($res , $temp);
 			}
 			$responseObj->setError(false);	
@@ -356,7 +356,7 @@
 		}
 		
 		public function deleteOrder($id){
-			$stmt = $this->con->prepare("DELETE FROM orders WHERE ID=?");
+			$stmt = $this->con->prepare("DELETE FROM orders WHERE order_id=?");
 			$stmt->bind_param("i", $id);
 			return $stmt->execute(); 
 		}

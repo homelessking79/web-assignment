@@ -59,9 +59,9 @@
 							<li>
 								<a href="users.php"><i class="fa fa-user fa-fw"></i> Users</a>
 							</li>
-							 <li>
+							 <!-- <li>
 								<a href="messages.php"><i class="fa fa-envelope fa-fw"></i> Messages</i></a>
-							</li>
+							</li> -->
 							<li>
 								<a href="../scripts/foreground/log-out.php"><i class="fa fa-sign-out fa-fw"></i> Log out</a>                      
 							</li>

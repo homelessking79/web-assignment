@@ -42,11 +42,11 @@ include_once 'header.php';
 								 len = data['data'].length;
 								 counter = 0;
 								 for (i=0;i<len;i++) {
-									 source = data['data'][i]['picture'];
-									 pointer = "../uploadedImages/"+source;
+									//  source = data['data'][i]['picture'];
+									//  pointer = "../uploadedImages/"+source;
 									
-									 d = new Date(parseInt(data['data'][i]['order_date']));
-									date = d.toLocaleString();
+									//  d = new Date(parseInt(data['data'][i]['order_date']));
+									// date = d.toLocaleString();
 									 
 									 suspect = "<tr class='table-primary text-center'>"
 												+"<td> <span class='proChecker' style='cursor:pointer' id="+data['data'][i]['ID']+"><i class='fa fa-times-circle' style='color:black;font-size:20px;font-weight:bolder'></i></span></a></td>"
@@ -54,8 +54,8 @@ include_once 'header.php';
 												+"<td>"+data['data'][i]['user_id']+"</td>"
 												+"<td>"+data['data'][i]['user_name']+"</td>"
 												+"<td>"+data['data'][i]['user_address']+"</td>"
-												+"<td> Rs. "+ data['data'][i]['price']+"</td>"
-												+"<td> "+date+" </td>"
+												+"<td> $ "+ data['data'][i]['price']+"</td>"
+												+"<td> "+data['data'][i]['order_date']+" </td>"
 												+"<td> "+data['data'][i]['items']+" </td>"
 												
 												+"</tr>"
