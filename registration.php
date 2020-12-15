@@ -15,10 +15,10 @@
 		
 		if(isset($_SESSION['isLogin'])){
 			if($_SESSION['isLogin']){
-				if($_SESSION['role'] == 'customer'){
+				if($_SESSION['role'] == 'C'){
 					header('location: index.php');
 					exit();
-				}else if($_SESSION['role'] == 'admin'){
+				}else if($_SESSION['role'] == 'A'){
 					header('location: admin/products.php');
 					exit();
 				}
@@ -83,6 +83,7 @@ include_once 'customer/header.php';
 					data:{'name':name, 'email':email , 'password':password , 're-pass':repass ,'address':address},
 					success:function(data){
 						 len = data['message'].length;
+						 console.log(data['message']);
 						 suspect = '';
 						 for (i=0;i<len;i++) {
 							 suspect += data['message'][i] + '\n';
@@ -99,7 +100,7 @@ include_once 'customer/header.php';
 								   
 									}).then(function() {
 									    document.former.reset();		
-										window.open('setProfilePic.php', '_self');
+										window.open('index.php', '_self');
 										return;
 							});
 						} 

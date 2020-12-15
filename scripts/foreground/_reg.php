@@ -18,7 +18,7 @@
 			$email = trim($_POST['email']);
 			$re_pass = trim($_POST['re-pass']);
 			$address = trim($_POST['address']);
-			$role = trim($_POST['role']);
+			$role = 'C';
 			$password = trim($_POST['password']);
 			
 			if(empty($name) || empty($email) || empty($re_pass) || empty($address) || empty($role) || empty($password) ) {
@@ -74,11 +74,11 @@
 			if(!$responseObj->getError()){
 				$_SESSION['isLogin'] = true;
 				$_SESSION['email'] = $_POST['email'];
-				$_SESSION['name'] = $data['name'];
-				$_SESSION['role'] = $data['role'];
+				$_SESSION['name'] = $data['user_fname'];
+				$_SESSION['role'] = $data['user_role'];
 				// $_SESSION['profileAddress'] = $data['profileAddress'];
-				$_SESSION['ID'] = $data['ID'];
-				$_SESSION['address'] = $data['address'];
+				$_SESSION['ID'] = $data['user_id'];
+				$_SESSION['address'] = $data['user_address'];
 				$_SESSION['pass'] = $_POST['password'];
 			}
 			
@@ -104,5 +104,3 @@
 		echo $responseObj->getResponse();
 		exit();
 	}
-	
-?>

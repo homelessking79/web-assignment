@@ -46,7 +46,7 @@ $con = $db->connect();
 							$counter = $counter->fetch_array(MYSQLI_NUM);
 
 						?>
-							<li><a href="category.php?product=<?php echo $row['cat_id'] ?>&name=<?php echo $row['cat_id'] ?>" style="color:grey"><?php echo $row['cat_title'] ?> </a><span class="badge pull-right"><?php echo $counter[0]; ?></span></li>
+							<li><a href="#" style="color:grey;"><?php echo $row['cat_title'] ?> </a><span class="badge pull-right"><?php echo $counter[0]; ?></span></li>
 						<?php
 						}
 						?>

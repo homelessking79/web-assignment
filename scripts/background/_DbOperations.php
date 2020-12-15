@@ -110,9 +110,9 @@
 		}
 		
 		private function getLoggedUserInfo($email, $pass){
-			$password = md5($pass);
+			//$password = md5($pass);
 			$stmt = $this->con->prepare("SELECT user_id,user_fname,user_role,user_address FROM users WHERE user_email=? AND user_pass=?");
-			$stmt->bind_param("ss",$email,$password);
+			$stmt->bind_param("ss",$email,$pass);
 			$stmt->execute();
 			$stmt->store_result();
 			$stmt->bind_result($ID,$name,$role,$address);

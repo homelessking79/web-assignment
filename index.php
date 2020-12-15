@@ -78,7 +78,7 @@ $con = $db->connect();
       <div class="col-lg-4">
         <div class="features-icons-item mx-auto mb-0 mb-lg-3">
           <div class="features-icons-icon d-flex">
-          <i class="fa fa-check-circle m-auto"></i>
+            <i class="fa fa-check-circle m-auto"></i>
           </div>
           <h3>1 Year Warranty</h3>
         </div>
@@ -103,7 +103,7 @@ $con = $db->connect();
     ?>
 
       <div class="col-sm-6 col-md-4 col-lg-3 mb-4 gallery_item">
-        <div class="card mx-auto text-center image">
+        <div class="card mx-auto text-center image product_detail" id="<?php echo $row['product_id'] ?>" style="cursor: pointer;">
           <img class="card-img-top" src="<?php echo "uploadedImages/Product/" . $row['product_img1'] ?>" alt="">
           <div class="card-body">
             <h5 class="card-title"><?php echo $row['product_title'] ?></h5>
@@ -138,7 +138,37 @@ $con = $db->connect();
         });
       });
     </script>
-
+    <script>
+      $(document).on('click', '.product_detail', function() {
+        id = $(this).attr('id');
+        console.log("ok");
+        localStorage.setItem('product-id', id);
+        window.open("./product_detail.php", "_self");
+        // $.ajax({
+        // 	type: 'POST',
+        // 	url: "./product_detail.php",
+        // 	dataType: "json",
+        // 	data: {
+        // 		'id': id
+        // 	},
+        // 	success: function(data) {
+        // 		console.log("ok");
+        // 		window.open('product_detail.php', '_self');
+        // 		// $.ajax({
+        // 		// 	type: 'POST',
+        // 		// 	url: "./product_detail.php",
+        // 		// 	dataType: "json",
+        // 		// 	data: {
+        // 		// 		'data': data.data.ID
+        // 		// 	},
+        // 		// 	success: function(data) {
+        // 		// 		window.op
+        // 		// 	}
+        // 		// });
+        // 	}
+        // });
+      });
+    </script>
 
 
 
@@ -174,10 +204,10 @@ $con = $db->connect();
   </div>
 </section>
 
-<?php  
-  include "map.php";
+<?php
+include "map.php";
 ?>
 
 <?php
-  include_once 'customer/footer.php';
+include_once 'customer/footer.php';
 ?>
