@@ -179,7 +179,12 @@
 			
 		</script>
 			
-			<?php 
+<?php  
+  include "map.php";
+?>
+
+
+<?php 
 
  include_once 'customer/footer.php';
 

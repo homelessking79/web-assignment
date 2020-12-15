@@ -174,10 +174,10 @@ $con = $db->connect();
   </div>
 </section>
 
-
+<?php  
+  include "map.php";
+?>
 
 <?php
-
-include_once 'customer/footer.php';
-
+  include_once 'customer/footer.php';
 ?>
