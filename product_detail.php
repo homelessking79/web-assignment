@@ -19,20 +19,7 @@ if (isset($_SESSION['isLogin'])) {
 }
 ?>
 
-<div class="container" style="margin-top:100px">
-    <div class="row">
-        <div class="col-lg-12">
-            <h3 class="page-header" id="shower"></h3>
-        </div>
-    </div> <!-- end of first row -->
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="table-responsive">
-
-            </div>
-        </div>
-    </div>
     <script>
         $(document).ready(function() {
                     id = JSON.parse(localStorage.getItem('product-id'));
@@ -52,8 +39,6 @@ if (isset($_SESSION['isLogin'])) {
                 }
                 // sum = 0;
     </script>
-
-</div>
 
 
 
