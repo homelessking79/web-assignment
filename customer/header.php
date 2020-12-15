@@ -64,7 +64,7 @@
 						<a class="nav-link js-scroll-trigger" href="./login.php">Log in </a>
 					</li>
 					<li class="nav-item">
-						<i class="nav-link js-scroll-trigger fa fa-shopping-cart fa-fw" id="cartButton" data-toggle="modal" data-target="#myModal" style="color:white;font-size:22px;"></i>
+						<i class="nav-link js-scroll-trigger fa fa-shopping-cart fa-fw" id="cartButton" data-toggle="modal" data-target="#myModal" style="color:white;font-size:22px"></i>
 					</li>
 
 				</ul>
