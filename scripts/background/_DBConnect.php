@@ -2,7 +2,7 @@
 
 		define('DB_NAME','laptopphongvu');
 		define('DB_USER','root');
-		define('DB_PASSWORD','abcdef1234');
+		define('DB_PASSWORD','');
 		define('DB_HOST','localhost');
 		
 	class DbConnect{
