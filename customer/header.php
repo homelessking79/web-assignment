@@ -43,12 +43,16 @@
 			<a class="navbar-brand" href="./index.php">
 				E-Laptop
 			</a>
+
 			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+				<?php
+					include_once 'customer/searchBar.php'
+				?>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="./index.php">Home </a>
@@ -56,9 +60,7 @@
 					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="./products.php">Products </a>
 					</li>
-					<!-- <li class="nav-item">
-						<a class="nav-link js-scroll-trigger" href="./contact.php">Contact us </a>
-					</li> -->
+
 
 					<li class="nav-item">
 						<a class="nav-link js-scroll-trigger" href="./login.php">Log in </a>
@@ -68,6 +70,7 @@
 					</li>
 
 				</ul>
+
 			</div>
 		</div>
 
@@ -134,8 +137,7 @@
 
 
 															+
-															'	<strong  class="col-sm-10"> ' + sus + '</strong>' 
-															+
+															'	<strong  class="col-sm-10"> ' + sus + '</strong>' +
 															' </div>   </li> ';
 
 														$("#cartContainer").append(formatter);

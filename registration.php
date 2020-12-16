@@ -42,14 +42,17 @@ include_once 'customer/header.php';
 					<input type="email" class="form-control" name="email" value="<?php echo $_SESSION['call_to_action_button_email'] ?>" placeholder="Email Address">
 				 </div>
 				 <div class="form-group">
-					<input type="text" class="form-control" name="password" placeholder="Password" required="required">
+					<input type="password" class="form-control" name="password" placeholder="Password" required="required">
 				 </div>
 				 <div class="form-group">
-					<input type="text" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+					<input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
 				 </div>     
 				<div class="form-group">
 					<textarea style="resize: none;" class="form-control" rows="4" name="address" placeholder="Address" required="required"></textarea>
-				 </div>     				 
+				 </div>
+				 <div class="form-group">
+					<input type="text" class="form-control" name="phone" placeholder="Phone number" required="required">
+				 </div>    				 
 				 <div class="form-group">
 					<button type="button" id="registerAccount" class="btn btn-primary btn-block btn-lg">Sign Up</button>
 				 </div>
@@ -75,12 +78,12 @@ include_once 'customer/header.php';
 				password = document.former.password.value.trim();
 				repass = document.former.confirm_password.value.trim();
 				address = document.former.address.value.trim();
-				
+				phone = document.former.phone.value.trim();
 				 $.ajax({
 					type:'POST',
 					url:'scripts/foreground/_reg.php',
 					dataType: "json",
-					data:{'name':name, 'email':email , 'password':password , 're-pass':repass ,'address':address},
+					data:{'name':name, 'email':email , 'password':password , 're-pass':repass ,'address':address, 'phone':phone},
 					success:function(data){
 						 len = data['message'].length;
 						 console.log(data['message']);

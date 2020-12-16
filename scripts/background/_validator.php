@@ -9,7 +9,12 @@ class validator {
 		}
 		return true;
    }
-   
+   public static function isValidPhone($phone){
+	if (!preg_match("/^\d{10}$/",$phone)) {
+		return false;
+	}
+	return true;
+   }
    public static function isValidEmail($email){
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			return false;

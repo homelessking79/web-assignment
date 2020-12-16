@@ -12,7 +12,7 @@
 
 	if($_SERVER['REQUEST_METHOD']=='POST'){	
 
-		if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['re-pass']) && isset($_POST['password']) && isset($_POST['address']) ){
+		if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['re-pass']) && isset($_POST['password']) && isset($_POST['address'] ) && isset($_POST['phone']) ){
 			
 			$name = trim($_POST['name']);
 			$email = trim($_POST['email']);
@@ -20,8 +20,8 @@
 			$address = trim($_POST['address']);
 			$role = 'C';
 			$password = trim($_POST['password']);
-			
-			if(empty($name) || empty($email) || empty($re_pass) || empty($address) || empty($role) || empty($password) ) {
+			$phone = trim($_POST['phone']);
+			if(empty($name) || empty($email) || empty($re_pass) || empty($address) || empty($role) || empty($password) || empty($phone) ) {
 				if($responseObj == null){
 					$responseObj = new Response();
 				}
@@ -50,6 +50,14 @@
 					$responseObj->setMessage('Please provide a valid user name');
 					$responseObj->setMessage('Only letters and white spaces are allowed');	
 				}
+				if (!validator::isValidPhone($phone)){
+					if($responseObj == null){
+						$responseObj = new Response();
+					}
+					$responseObj->setError(true);	
+					$responseObj->setMessage('Please provide a valid Phone number');
+					$responseObj->setMessage('Only 10 numbers are allowed');	
+				}
 				if (!validator::isValidEmail($email)){
 					if($responseObj == null){
 						$responseObj = new Response();
@@ -68,7 +76,7 @@
 			}
 
 			$dbOperationsObject = new DbOperations(); 
-			$responseObj = $dbOperationsObject->createUser($name , trim($_POST['password'])  ,$email , trim($_POST['address']) ,$role);
+			$responseObj = $dbOperationsObject->createUser($name , trim($_POST['password'])  ,$email , trim($_POST['address']) ,$role, $phone);
 			$data = $responseObj->getContent();
 			
 			if(!$responseObj->getError()){
@@ -76,7 +84,7 @@
 				$_SESSION['email'] = $_POST['email'];
 				$_SESSION['name'] = $data['user_fname'];
 				$_SESSION['role'] = $data['user_role'];
-				// $_SESSION['profileAddress'] = $data['profileAddress'];
+				$_SESSION['phone'] = $data['user_contact'];
 				$_SESSION['ID'] = $data['user_id'];
 				$_SESSION['address'] = $data['user_address'];
 				$_SESSION['pass'] = $_POST['password'];

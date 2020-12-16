@@ -18,7 +18,7 @@
 		}
 
 
-		public function createUser($name, $pass, $email , $address , $role){
+		public function createUser($name, $pass, $email , $address , $role, $phone){
 			$responseObj = new Response();
 			if($this->isUserExist($email)){
 				$responseObj->setError(true);	
@@ -26,8 +26,8 @@
 			}else{
 				// $password = md5($pass);
 				
-				$stmt = $this->con->prepare("INSERT INTO `users`(`user_fname`, `user_email`, `user_pass`, `user_address`, `user_role`) VALUES (?,?,?,?,?);");
-				$stmt->bind_param("sssss",$name,$email,$pass,$address,$role);
+				$stmt = $this->con->prepare("INSERT INTO `users`(`user_fname`, `user_email`, `user_pass`, `user_address`, `user_role`, `user_contact`) VALUES (?,?,?,?,?,?);");
+				$stmt->bind_param("ssssss",$name,$email,$pass,$address,$role,$phone);
 
 				if($stmt->execute()){
 					$responseObj->setError(false);	
@@ -111,11 +111,11 @@
 		
 		private function getLoggedUserInfo($email, $pass){
 			//$password = md5($pass);
-			$stmt = $this->con->prepare("SELECT user_id,user_fname,user_role,user_address FROM users WHERE user_email=? AND user_pass=?");
+			$stmt = $this->con->prepare("SELECT user_id,user_fname,user_role,user_address,user_contact FROM users WHERE user_email=? AND user_pass=?");
 			$stmt->bind_param("ss",$email,$pass);
 			$stmt->execute();
 			$stmt->store_result();
-			$stmt->bind_result($ID,$name,$role,$address);
+			$stmt->bind_result($ID,$name,$role,$address,$phone);
 			$temp = array();
 			if($stmt->num_rows >0) {
 				$res = $stmt->fetch();
@@ -123,7 +123,7 @@
 				$temp['user_fname'] = $name;
 				$temp['user_role'] = $role;
 				$temp['user_address'] = $address;
-	
+				$temp['user_contact'] = $phone;
 			}
 			return $temp; 
 		}
