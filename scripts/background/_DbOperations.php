@@ -82,10 +82,10 @@
 		public function userLogin($email, $pass){
 			//$password = md5($pass);
 			$responseObj = new Response();
-			$stmt = $this->con->prepare("SELECT user_id,user_fname,user_role,user_address FROM users WHERE user_email='$email' AND user_pass='$pass'");
+			$stmt = $this->con->prepare("SELECT user_id,user_fname,user_role,user_address,user_contact FROM users WHERE user_email='$email' AND user_pass='$pass'");
 			$stmt->execute();
 			$stmt->store_result();
-			$stmt->bind_result($ID,$name,$role,$address);
+			$stmt->bind_result($ID,$name,$role,$address,$phone);
 			if($stmt->num_rows) {
 				$res = $stmt->fetch();
 				$temp = array();
@@ -93,7 +93,7 @@
 				$temp['user_fname'] = $name;
 				$temp['user_role'] = $role;
 				$temp['user_address'] = $address;
-
+				$temp['user_contact'] = $phone;
 				$responseObj->setMessage('Welcome '.$name);	
 				$responseObj->setMessage('Log in Successful');	
 				$responseObj->setContent($temp);	
@@ -261,9 +261,9 @@
 			return $responseObj;
 		}
 		
-		public function updateProduct($name, $price, $quantity , $image_server_name,$id){
+		public function updateProduct($name, $price, $quantity , $image_server_name,$id, $trend){
 			$responseObj = new Response();
-			$sql = "UPDATE products SET product_title='$name',price='$price',product_img1='$image_server_name',quantity='$quantity' WHERE product_id='$id'";
+			$sql = "UPDATE products SET product_title='$name',price='$price',product_img1='$image_server_name',quantity='$quantity',trending='$trend' WHERE product_id='$id'";
 			
 			// $stmt->bind_param("ssssi",$name,$price,$image_server_name,$quantity,$id);
 			// $status = $stmt->execute();
@@ -298,7 +298,25 @@
 		// 	$response['messages'] = $res;
 		// 	return $response;
 		// }
-		
+		public function updateUser($id, $phone, $email, $address, $name){
+			$responseObj = new Response();
+			$sql = "UPDATE users SET user_contact='$phone',user_email='$email',user_address='$address', user_fname='$name' WHERE user_id=$id";
+			
+			// $stmt->bind_param("ssssi",$name,$price,$image_server_name,$quantity,$id);
+			// $status = $stmt->execute();
+
+			if ($this->con->query($sql)) {
+				$responseObj->setError(false);	
+				$responseObj->setMessage('updated successfully');	
+				$responseObj->setContent(null);
+			}else{
+				$responseObj->setError(true);	
+				$responseObj->setMessage('Failed to update profile');	
+				$responseObj->setContent('false');
+				
+			}
+			return $responseObj;
+		}
 		public function getAllOrders(){
 			$responseObj = new Response();
 			$res = array();
@@ -451,7 +469,7 @@
 				$temp['description'] =  $row['product_desc'];
 				$temp['Category'] =  $row['cat_title'];
 				$temp['Brand'] = $row['brand_title'];
-
+				$temp['trend'] = $row['trending'];
 			}
 			 $responseObj->setContent($temp);	
 			return $responseObj;

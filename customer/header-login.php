@@ -113,7 +113,7 @@
 							<?php
 
 							if (isset($_SESSION['name'])) {
-								echo '<p style="color: white; display:inline; padding:20px;">Welcome ' . $_SESSION['name'] . '</p>';
+								echo '<p style="color: white; display:inline; padding:20px; cursor:pointer;">Welcome ' . $_SESSION['name'] . '</p>';
 							}
 
 							?>
@@ -123,7 +123,7 @@
 						<div class="dropdown-menu" aria-labelledby="navDropDownLink">
 							<a class="dropdown-item" href="./orderHistory.php">Order History</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="./setProfilePic.php">Change Profile Picture</a>
+							<a class="dropdown-item" href="./setProfilePic.php">Change Profile</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="./scripts/foreground/log-out.php">Log out</a>
 						</div>

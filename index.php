@@ -98,11 +98,11 @@ $con = $db->connect();
   <div class="row" id="body-content-deals">
 
     <?php
-    $result = $con->query("SELECT p.product_id , p.product_title , p.price , p.product_img1 from products p where p.trending = '1'  LIMIT 4");
+    $result = $con->query("SELECT p.product_id , p.product_title , p.price , p.product_img1 from products p where p.trending = '1'  LIMIT 8");
     while ($row = $result->fetch_assoc()) {
     ?>
 
-      <div class="col-sm-6 col-md-4 col-lg-3 mb-4 gallery_item">
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-4 gallery_itemm">
         <div class="card mx-auto text-center image product_detail" id="<?php echo $row['product_id'] ?>" style="cursor: pointer;">
           <img class="card-img-top" src="<?php echo "uploadedImages/Product/" . $row['product_img1'] ?>" alt="">
           <div class="card-body">
@@ -181,7 +181,7 @@ $con = $db->connect();
 
 
 <!-- Call to Action -->
-<section class="call-to-action text-white text-center">
+<!-- <section class="call-to-action text-white text-center">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
@@ -202,7 +202,7 @@ $con = $db->connect();
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <?php
 include "map.php";

@@ -23,11 +23,11 @@
   text-align: center;
 }
 
-.gallery_item:hover .image {
+.gallery_itemm:hover .image {
   opacity: 0.3;
 }
 
-.gallery_item:hover .middle {
+.gallery_itemm:hover .middle {
   opacity: 1;
 }
 

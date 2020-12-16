@@ -52,6 +52,7 @@
 				$_SESSION['ID'] = $data['user_id'];
 				$_SESSION['address'] = $data['user_address'];
 				$_SESSION['pass'] = $_POST['password'];
+				$_SESSION['phone'] = $data['user_contact'];
 			}
 			
 			

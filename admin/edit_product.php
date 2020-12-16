@@ -25,6 +25,13 @@ include_once 'header.php';
 			</div>
 			<div class="form-group">
 				<input type="number" class="form-control" name="quantity" placeholder="Quantity">
+			</div>
+			<div class="form-group">
+				<label for="trending" style="display: inline-block;">Trending:</label>
+				<select name="trending" id="trending">
+					<option value="0" id="option0">0</option>
+					<option value="1" id="option1">1</option>
+				</select>
 				<script>
 					$(document).ready(function() {
 
@@ -46,16 +53,17 @@ include_once 'header.php';
 								document.former.name.value = data['data']['name'];
 								document.former.price.value = data['data']['price'];
 								document.former.quantity.value = data['data']['quantity'];
-
-
-
+								trend = data['data']['trend'];
+								if(trend == 1) $('#option1').attr('selected', 'selected');
+								else $('#option0').attr('selected', 'selected');
+								
 
 
 								document.getElementById('suspecter').innerHTML = "Edit Product <br><br>[ " + data['data']['name'] + " - " + data['data']['Category'] + " ]<br><br>";
 
 								source = data['data']['picture'];
 								pointer = "../uploadedImages/Product/" + source;
-
+								
 								$('#profile-img-tag').attr('src', pointer);
 								$('#profile-img-tag').attr('style', 'width:250px;height:250px');
 
@@ -146,6 +154,7 @@ include_once 'header.php';
 					}); // jquery parent ends here
 				</script>
 			</div>
+
 
 			<div class="form-group">
 				<input style="margin-top:20px;" id='profile-img' type="file" name="image" accept="image/*" />

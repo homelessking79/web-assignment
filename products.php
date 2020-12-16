@@ -46,7 +46,9 @@ $con = $db->connect();
 							$counter = $counter->fetch_array(MYSQLI_NUM);
 
 						?>
-							<li><div  style="color:grey; cursor:pointer; display: inline;" id="<?php echo $row['cat_title'] ?>"><?php echo $row['cat_title'] ?> </div><span class="badge pull-right"><?php echo $counter[0]; ?></span></li>
+							<li>
+								<div style="color:grey; cursor:pointer; display: inline;" id="<?php echo $row['cat_title'] ?>"><?php echo $row['cat_title'] ?> </div><span class="badge pull-right"><?php echo $counter[0]; ?></span>
+							</li>
 						<?php
 						}
 						?>
@@ -62,7 +64,7 @@ $con = $db->connect();
 				while ($row = $result->fetch_assoc()) {
 				?>
 					<div class="blocktxt">
-						<div  style="color:grey; cursor:pointer;" class="filter" id="<?php echo $row['brand_title'] ?>"><?php echo $row['brand_title']  ?> </div>
+						<div style="color:grey; cursor:pointer;" class="filter" id="<?php echo $row['brand_title'] ?>"><?php echo $row['brand_title']  ?> </div>
 					</div>
 					<div class="divline"></div>
 				<?php
@@ -84,27 +86,28 @@ $con = $db->connect();
 					while ($row = $result->fetch_assoc()) {
 					?>
 
-						<div class="col-sm-6 col-md-6 col-lg-4 mb-4 gallery_item filterItem product-<?php echo $row['brand_title'] ?> product-<?php echo $row['cat_title'] ?>" id="productID<?php echo $row['product_id'] ?> " >
-							<div id="<?php echo $row['product_id'] ?> " class="product_detail  " style="cursor: pointer;">
-								<div class="card mx-auto text-center image">
-									<img class="card-img-top" src="<?php echo "uploadedImages/Product/" . $row['product_img1'] ?>" alt="Sample Title">
+						<div class="col-sm-6 col-md-6 col-lg-4 mb-4 gallery_item filterItem product-<?php echo $row['brand_title'] ?> product-<?php echo $row['cat_title'] ?>" id="productID<?php echo $row['product_id'] ?>" >
+							<div id="<?php echo $row['product_id'] ?> " class="product_chosen"  style="cursor: pointer;">
+								<div class="card mx-auto text-center image " >
+									<img class="card-img-top product_detail" src="<?php echo "uploadedImages/Product/" . $row['product_img1'] ?>" alt="Sample Title">
 									<div class="card-body">
-										<h5 class="card-title"><?php echo $row['product_title'] ?></h5>
+										<h5 class="card-title product_detail" style="min-height: 48px;"><?php echo $row['product_title'] ?></h5>
 										<h5 style="color:red">$<?php echo $row['price'] ?></h5>
+										<div>
+											<button type="submit" class="btn btn-block btn-danger proChecker" name='<?php echo $row['product_title'] ?>' id='<?php echo $row['product_id'] ?>'>
+												<span style="font-size:11px">ADD TO CART</span> &nbsp; &nbsp;<i class="fa fa-shopping-cart"></i>
+											</button>
+										</div>
 									</div>
 								</div>
-								<div class="middle">
-									<button type="submit" class="btn btn-block btn-danger proChecker" name='<?php echo $row['product_title'] ?>' id='<?php echo $row['product_id'] ?>'>
-										<span style="font-size:11px">ADD TO CART</span> &nbsp; &nbsp;<i class="fa fa-shopping-cart"></i>
-									</button>
-								</div>
+
 							</div>
 							<script>
 								$(document).on('click', '.product_detail', function() {
-									id = $(this).attr('id');
+									id = $('.product_chosen').attr('id');
 									console.log("ok");
 									localStorage.setItem('product-id', id);
-									window.open("./product_detail.php","_self");
+									window.open("./product_detail.php", "_self");
 									// $.ajax({
 									// 	type: 'POST',
 									// 	url: "./product_detail.php",
@@ -208,7 +211,7 @@ $con = $db->connect();
 		$('.product-MacOS').hide();
 		$('.product-Linux').show();
 	})
-	
+
 	$(document).on('click', '.proChecker', function() {
 		id = $(this).attr('id');
 		name = $(this).attr('name');

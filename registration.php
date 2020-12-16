@@ -78,7 +78,7 @@ include_once 'customer/header.php';
 				password = document.former.password.value.trim();
 				repass = document.former.confirm_password.value.trim();
 				address = document.former.address.value.trim();
-				phone = document.former.phone.value.trim();
+				phone = document.former.phone.value.strim();
 				 $.ajax({
 					type:'POST',
 					url:'scripts/foreground/_reg.php',
