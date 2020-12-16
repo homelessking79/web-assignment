@@ -89,9 +89,9 @@ $con = $db->connect();
 						<div class="col-sm-6 col-md-6 col-lg-4 mb-4 gallery_item filterItem product-<?php echo $row['brand_title'] ?> product-<?php echo $row['cat_title'] ?>" id="productID<?php echo $row['product_id'] ?>" >
 							<div id="<?php echo $row['product_id'] ?> " class="product_chosen"  style="cursor: pointer;">
 								<div class="card mx-auto text-center image " >
-									<img class="card-img-top product_detail" src="<?php echo "uploadedImages/Product/" . $row['product_img1'] ?>" alt="Sample Title">
+									<img class="card-img-top product_detail" src="<?php echo "uploadedImages/Product/" . $row['product_img1'] ?>" alt="Sample Title" id="<?php echo $row['product_id'] ?> ">
 									<div class="card-body">
-										<h5 class="card-title product_detail" style="min-height: 48px;"><?php echo $row['product_title'] ?></h5>
+										<h5 class="card-title product_detail" style="min-height: 48px;" id="<?php echo $row['product_id'] ?> "><?php echo $row['product_title'] ?></h5>
 										<h5 style="color:red">$<?php echo $row['price'] ?></h5>
 										<div>
 											<button type="submit" class="btn btn-block btn-danger proChecker" name='<?php echo $row['product_title'] ?>' id='<?php echo $row['product_id'] ?>'>
@@ -104,7 +104,7 @@ $con = $db->connect();
 							</div>
 							<script>
 								$(document).on('click', '.product_detail', function() {
-									id = $('.product_chosen').attr('id');
+									id = $(this).attr('id');
 									console.log("ok");
 									localStorage.setItem('product-id', id);
 									window.open("./product_detail.php", "_self");
