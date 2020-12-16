@@ -75,7 +75,7 @@ $con = $db->connect();
 
 		</div>
 
-		<div class="col-9">
+		<div class="col-lg-9">
 			<div class="container">
 				<h1 class="my-4 text-center text-lg-center"></h1>
 				<div class="row">
@@ -233,7 +233,9 @@ $con = $db->connect();
 
 
 
-
+<?php
+include "map.php";
+?>
 <?php
 
 include_once 'customer/footer.php';

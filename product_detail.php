@@ -20,7 +20,7 @@ if (isset($_SESSION['isLogin'])) {
 ?>
 <div class="container">
     <div class="row pt-5 pb-5">
-        <div class="col-6">
+        <div class="col-lg-6">
             <div class="image">
             </div>
             <div class="description-wrapper">
@@ -29,7 +29,7 @@ if (isset($_SESSION['isLogin'])) {
             </div>
 
         </div>
-        <div class="col-6">
+        <div class="col-lg-6">
             <div style="padding: 20px 0; font-size: 20px; font-weight: 600; border-bottom: 1px solid silver" id="product-name"></div>
             <div style="display: flex; justify-content: flex-start" class="price pt-3 pb-3">
                 <span>Price: </span>
@@ -132,6 +132,8 @@ if (isset($_SESSION['isLogin'])) {
 
 
 
-
+<?php
+include "map.php";
+?>
 
 <?php include_once 'customer/footer.php'; ?>
