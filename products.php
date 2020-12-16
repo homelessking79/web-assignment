@@ -31,7 +31,7 @@ $con = $db->connect();
 
 		<div class="col-lg-3">
 			<div class="sidebarblock">
-				<h3>Categories</h3>
+				<h3 id="all-cat">Categories</h3>
 				<div class="divline"></div>
 				<div class="blocktxt">
 					<ul class="cats">
@@ -46,7 +46,7 @@ $con = $db->connect();
 							$counter = $counter->fetch_array(MYSQLI_NUM);
 
 						?>
-							<li><a href="#" style="color:grey;"><?php echo $row['cat_title'] ?> </a><span class="badge pull-right"><?php echo $counter[0]; ?></span></li>
+							<li><div  style="color:grey; cursor:pointer; display: inline;" id="<?php echo $row['cat_title'] ?>"><?php echo $row['cat_title'] ?> </div><span class="badge pull-right"><?php echo $counter[0]; ?></span></li>
 						<?php
 						}
 						?>
@@ -55,7 +55,7 @@ $con = $db->connect();
 			</div>
 
 			<div class="sidebarblock">
-				<h3 id="ALL" style="cursor: pointer;">Brands</h3>
+				<h3 id="all-brands" style="cursor: pointer;">Brands</h3>
 				<div class="divline"></div>
 				<?php
 				$result = $con->query("SELECT * from brands");
@@ -80,11 +80,11 @@ $con = $db->connect();
 
 
 					<?php
-					$result = $con->query("SELECT p.product_id , p.product_title , p.price , p.product_img1, b.brand_title from products p, brands b where p.brand_id = b.brand_id");
+					$result = $con->query("SELECT p.product_id , p.product_title , p.price , p.product_img1, b.brand_title, c.cat_title from products p, brands b, category c where p.brand_id = b.brand_id and p.cat_id = c.cat_id");
 					while ($row = $result->fetch_assoc()) {
 					?>
 
-						<div class="col-sm-6 col-md-6 col-lg-4 mb-4 gallery_item filterItem product-<?php echo $row['brand_title'] ?>" id="productID<?php echo $row['product_id'] ?> " >
+						<div class="col-sm-6 col-md-6 col-lg-4 mb-4 gallery_item filterItem product-<?php echo $row['brand_title'] ?> product-<?php echo $row['cat_title'] ?>" id="productID<?php echo $row['product_id'] ?> " >
 							<div id="<?php echo $row['product_id'] ?> " class="product_detail  " style="cursor: pointer;">
 								<div class="card mx-auto text-center image">
 									<img class="card-img-top" src="<?php echo "uploadedImages/Product/" . $row['product_img1'] ?>" alt="Sample Title">
@@ -178,12 +178,37 @@ $con = $db->connect();
 		$('.product-LENOVO').hide();
 		$('.product-Apple').show();
 	})
-	$('#ALL').on('click', function() {
+	$('#all-brand').on('click', function() {
 		console.log('alo')
 		$('.product-DELL').show();
 		$('.product-LENOVO').show();
 		$('.product-Apple').show();
 	})
+	$('#all-cat').on('click', function() {
+		console.log('alo')
+		$('.product-Window').show();
+		$('.product-MacOS').show();
+		$('.product-Linux').show();
+	})
+	$('#Window').on('click', function() {
+		console.log('alo')
+		$('.product-Window').show();
+		$('.product-MacOS').hide();
+		$('.product-Linux').hide();
+	})
+	$('#MacOS').on('click', function() {
+		console.log('alo')
+		$('.product-Window').hide();
+		$('.product-MacOS').show();
+		$('.product-Linux').hide();
+	})
+	$('#Linux').on('click', function() {
+		console.log('alo')
+		$('.product-Window').hide();
+		$('.product-MacOS').hide();
+		$('.product-Linux').show();
+	})
+	
 	$(document).on('click', '.proChecker', function() {
 		id = $(this).attr('id');
 		name = $(this).attr('name');
